@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Comercial Proppit - Editable</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #002D5B; /* Azul Navy */
+            --secondary: #00C2CB; /* Cyan Proppit */
+            --text-dark: #1A1A1A;
+            --text-muted: #555555;
+            --bg-light: #F8FAFC;
+            --white: #FFFFFF;
+            --border-color: #E2E8F0;
+        }
+
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; 
+            padding: 20px 0; 
+            background-color: #E2E8F0; 
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        /* Estilos para campos editables generales */
+        [contenteditable="true"] {
+            transition: all 0.2s ease;
+            padding: 2px 4px;
+            border-radius: 4px;
+            display: inline-block;
+            min-width: 30px;
+        }
+
+        /* Estilo específico para los recuadros de la tabla - Muestra Completa */
+        .editable-input-box {
+            border: 1.5px solid #000;
+            padding: 8px 14px;
+            min-height: 44px;
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+            background-color: #fff;
+            text-align: left;
+            font-weight: 500;
+            margin-top: 5px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Estilo para el nuevo recuadro de Nota - Borde Azul Marino y ancho total */
+        .note-input-box-navy {
+            border: 1px solid var(--primary);
+            padding: 6px 12px;
+            min-height: 36px; /* Altura de una línea aproximadamente */
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+            background-color: #fff;
+            text-align: left;
+            font-weight: 400;
+            margin-top: 5px;
+            color: var(--text-dark);
+            font-size: 13.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        [contenteditable="true"]:hover {
+            background-color: rgba(0, 194, 203, 0.05);
+            cursor: text;
+        }
+
+        [contenteditable="true"]:focus {
+            outline: 2px solid var(--secondary);
+            background-color: #fff;
+            border-color: var(--secondary);
+            white-space: normal; /* Permite ver todo al editar si es necesario */
+            overflow: visible;
+        }
+
+        /* Botón de impresión */
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .print-btn:hover {
+            background-color: #00a8af;
+            transform: translateY(-2px);
+        }
+
+        /* Formato Hoja Carta (US Letter) */
+        .page {
+            width: 816px;
+            height: 1056px;
+            padding: 45px 65px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .logo-area h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            color: var(--primary);
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        .logo-area span { color: var(--secondary); }
+        .logo-area p { font-size: 11px; margin: 0; color: #000; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .date-id { text-align: right; color: var(--text-muted); font-size: 13px; }
+
+        .recipient-box { margin-bottom: 25px; }
+        .recipient-box h2 { font-size: 12px; text-transform: uppercase; color: var(--secondary); margin-bottom: 2px; letter-spacing: 1px; font-weight: 700; }
+        .recipient-box .client-name { font-size: 20px; font-weight: 700; color: var(--primary); margin: 0; }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+            margin: 20px 0 12px;
+            padding-bottom: 3px;
+        }
+
+        .intro-text { font-size: 14.5px; margin-bottom: 25px; text-align: justify; }
+
+        /* Tabla de Inversión */
+        .table-wrapper {
+            margin: 5px 0 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            table-layout: fixed;
+        }
+
+        .pricing-table th {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .pricing-table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+        
+        .col-servicio { width: 30%; }
+        .col-producto { width: 45%; }
+        .col-inversion { width: 25%; }
+
+        /* Slogan central */
+        .slogan-box {
+            text-align: center;
+            margin: 35px 0;
+            font-size: 15px;
+            color: var(--primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 5px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .feature-item i { color: var(--secondary); margin-top: 3px; font-size: 14px; }
+        .feature-item span b { color: var(--primary); }
+
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 15px;
+        }
+
+        .contact-info p { margin: 2px 0; font-size: 12px; }
+        .contact-info .name { font-weight: 700; color: var(--primary); font-size: 14px; margin-bottom: 4px; }
+
+        .signature { text-align: center; width: 220px; }
+        .signature-line { border-top: 1px solid var(--text-dark); margin-bottom: 8px; }
+        .signature p { margin: 0; font-size: 12px; color: var(--text-muted); }
+        .signature strong { color: var(--primary); font-size: 13px; }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .page { 
+                box-shadow: none; 
+                margin: 0; 
+                width: 100%;
+                height: 100vh;
+            }
+            .print-btn { display: none !important; }
+            .editable-input-box {
+                border: 1.5px solid #000 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .note-input-box-navy {
+                border: 1px solid var(--primary) !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .pricing-table th {
+                background-color: var(--primary) !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+            }
+            @page {
+                size: letter;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón de impresión -->
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Imprimir en Tamaño Carta
+    </button>
+
+    <div class="page">
+        <header>
+            <div class="logo-area">
+                <h1>PROPPIT<span>.</span></h1>
+                <p style="color: #000; font-weight: bold;">LA PLATAFORMA DE MARKETING INMOBILIARIO</p>
+            </div>
+            <div class="date-id">
+                <strong>Fecha:</strong> <span contenteditable="true">19 de Febrero, 2026</span><br>
+                <strong>Referencia:</strong> PROP-CS-2025-01
+            </div>
+        </header>
+
+        <div class="recipient-box">
+            <h2>Propuesta preparada para:</h2>
+            <p class="client-name" contenteditable="true">Carla Saldarriaga</p>
+        </div>
+
+        <div class="intro-text">
+            Estrategia comercial diseñada para optimizar la captación y gestión de prospectos de su inventario inmobiliario. Este enfoque prioriza la <strong>calidad de los contactos</strong> y la eficiencia operativa sobre la simple visibilidad masiva.
+        </div>
+
+        <h3>1. Objetivos Estratégicos</h3>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span><b>Multi-publicación:</b> Presencia en Properati, Punto Propiedad, Nestoria, Nuroa, Mitula y Trovit con un solo clic.</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span><b>Filtrado de Leads:</b> Verificación de datos y calificación previa para reducir el tiempo en contactos.</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span><b>Gestión Mobile:</b> Respuesta inmediata vía WhatsApp y MiniCRM integrado para seguimiento efectivo.</span>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span><b>Análisis de Data:</b> Información en tiempo real sobre el desempeño de cada propiedad publicada.</span>
+            </div>
+        </div>
+
+        <h3>2. Plan de Inversión Seleccionado</h3>
+        <div class="table-wrapper">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th class="col-servicio">Servicio</th>
+                        <th class="col-producto">Producto</th>
+                        <th class="col-inversion">Inversión</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="editable-input-box" contenteditable="true">Plan Premium</div>
+                        </td>
+                        <td>
+                            <div class="editable-input-box" contenteditable="true">50 Destacados / 100 Pubs.</div>
+                        </td>
+                        <td>
+                            <div class="editable-input-box" contenteditable="true">$ COP</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Nueva Sección de Nota con recuadro Azul Marino de ancho total -->
+        <div style="margin-top: 10px;">
+            <strong style="color: var(--primary); font-size: 13px;">Nota:</strong>
+            <div class="note-input-box-navy" contenteditable="true">
+                Se establece un periodo inicial de prueba mediante la adquisición de un plan mensual por única vez. Este ciclo tiene vigencia hasta el 23 de marzo del 2026.
+            </div>
+        </div>
+
+        <!-- Slogan central -->
+        <div class="slogan-box">
+            <strong>Ayudamos a conectar tus inmuebles con clientes de alto potencial de compra</strong>
+        </div>
+
+        <footer>
+            <div class="contact-info">
+                <p class="name" contenteditable="true">Dayro Leal</p>
+                <p>Hunter Agencies / Proppit Partner</p>
+                <p><i class="fa-solid fa-phone" style="font-size: 10px; color: var(--secondary);"></i> <span contenteditable="true">+57 300 665 1332</span></p>
+            </div>
+            <div class="signature">
+                <div class="signature-line"></div>
+                <p>Aceptado por:</p>
+                <strong contenteditable="true">Carla Saldarriaga</strong>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
