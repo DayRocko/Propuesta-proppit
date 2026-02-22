@@ -131,20 +131,20 @@
         }
         .contact-item i { color: var(--primary-green); font-size: 14px; }
 
-        /* Sección de Diagnóstico */
+        /* Sección de Diagnóstico - Reducido margen para subir contenido */
         .diagnosis-section {
-            margin-top: 30px;
-            margin-bottom: 12px;
+            margin-top: 15px; /* Reducido de 30px */
+            margin-bottom: 10px;
             padding-top: 10px;
             border-top: 3px solid var(--navy-deep);
         }
 
-        /* 3. SECCIÓN DIAGNÓSTICO ESTRATÉGICO con Marcas de Agua */
+        /* 3. SECCIÓN DIAGNÓSTICO ESTRATÉGICO */
         .strategic-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* Reducido de 20px */
         }
         .card {
             padding: 12px 18px;
@@ -157,9 +157,8 @@
             position: relative;
             z-index: 1;
             height: auto;
-            min-height: 110px;
+            min-height: 100px;
         }
-        /* Marcas de agua de orden */
         .card::before {
             content: attr(data-order);
             position: absolute;
@@ -186,8 +185,8 @@
         .card label i { color: var(--primary-green); }
         .card .content { font-size: 11.5px; line-height: 1.4; color: var(--grey-dark); text-align: justify; }
 
-        /* 4. SOLUCIÓN / INVERSIÓN */
-        .investment-section { margin-top: 35px; margin-bottom: 20px; }
+        /* 4. SOLUCIÓN / INVERSIÓN - Reducido margen para subir contenido */
+        .investment-section { margin-top: 15px; /* Reducido de 35px */ margin-bottom: 15px; }
         .table-container { border-radius: 10px; overflow: hidden; border: 1px solid var(--grey-light); box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
         table { width: 100%; border-collapse: collapse; }
         th { background: var(--navy-deep); color: var(--white); padding: 12px; font-size: 9px; text-transform: uppercase; text-align: left; }
@@ -201,8 +200,8 @@
         }
         select:hover { border-color: var(--primary-green); }
 
-        /* 5. FUNCIONALIDADES */
-        .features-section { margin-top: 5px; margin-bottom: 15px; }
+        /* 5. FUNCIONALIDADES - Reducido margen para subir contenido */
+        .features-section { margin-top: 5px; margin-bottom: 10px; }
         .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 5px 0; }
         .feature-item {
             background: var(--bg-accent);
@@ -212,7 +211,7 @@
             border: 1px solid #C6F6D5;
             display: flex;
             flex-direction: column;
-            min-height: 140px; 
+            min-height: 130px; 
         }
         .feature-item i { font-size: 22px; color: var(--primary-green); margin-bottom: 8px; display: block; }
         .feature-item h4 { font-family: 'Poppins', sans-serif; font-size: 9.5px; margin: 0 0 5px 0; color: var(--navy-deep); text-transform: uppercase; line-height: 1.1; }
@@ -234,9 +233,9 @@
         .cta-section p { font-size: 13px; font-weight: 600; margin: 0; }
         .cta-section p strong { color: var(--primary-green); }
 
-        /* 7. FOOTER */
+        /* 7. FOOTER - Ajustes de visibilidad solicitados */
         footer {
-            height: 70px;
+            height: 80px;
             border-top: 1px solid var(--grey-light);
             display: flex;
             justify-content: space-between;
@@ -244,7 +243,19 @@
             padding-top: 10px;
         }
         .author h4 { font-size: 14px; color: var(--navy-deep); margin: 0; }
-        .author p { font-size: 10px; color: var(--grey-muted); margin: 1px 0; }
+        /* Cargo más grande y visible */
+        .author p { 
+            font-size: 12.5px; /* Aumentado */
+            font-weight: 500;
+            color: var(--grey-dark); /* Más oscuro para visibilidad */
+            margin: 2px 0; 
+        }
+        /* Número de teléfono más grande */
+        .author .phone-line {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--navy-deep);
+        }
         .author i { color: var(--primary-green); margin-right: 5px; }
 
         .signature-box { text-align: center; width: 180px; }
@@ -392,7 +403,7 @@
             </div>
         </section>
 
-        <!-- DIAGNÓSTICO DE OPERACIÓN - Selector con iconos y mayor tamaño -->
+        <!-- DIAGNÓSTICO DE OPERACIÓN -->
         <section class="diagnosis-section">
             <div style="display: grid; grid-template-columns: auto 1fr; gap: 15px; align-items: center;">
                 <div class="section-title-uniform" style="margin-bottom: 0; flex: none;">
@@ -411,7 +422,7 @@
             </div>
         </section>
 
-        <!-- 3. DIAGNÓSTICO ESTRATÉGICO - Con números de orden -->
+        <!-- 3. DIAGNÓSTICO ESTRATÉGICO -->
         <div class="strategic-grid">
             <div class="card" data-order="1">
                 <label><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnóstico</label>
@@ -431,7 +442,7 @@
             </div>
         </div>
 
-        <!-- 4. INVERSIÓN -->
+        <!-- 4. INVERSIÓN (SUBIDO) -->
         <section class="investment-section">
             <div class="section-title-uniform">Configuración del Plan de Inversión</div>
             <div class="table-container">
@@ -474,7 +485,7 @@
             </div>
         </section>
 
-        <!-- 5. FUNCIONALIDADES -->
+        <!-- 5. FUNCIONALIDADES (SUBIDO) -->
         <section class="features-section">
             <div class="section-title-uniform">Funcionalidades Clave de la Plataforma</div>
             <div class="features-grid">
@@ -506,12 +517,14 @@
             <p>Conectamos tus inmuebles con <strong>clientes de alto potencial de compra</strong></p>
         </div>
 
-        <!-- 7. FOOTER -->
+        <!-- 7. FOOTER ACTUALIZADO -->
         <footer>
             <div class="author">
                 <h4 contenteditable="true">Dayro Leal</h4>
-                <p>Hunter Agencies | Partner Estratégico Proppit</p>
-                <p><i class="fa-solid fa-phone"></i> <span contenteditable="true" id="sender-phone">+57 300 665 1332</span></p>
+                <p contenteditable="true">Hunter Agencies | Partner Estratégico Proppit</p>
+                <div class="phone-line">
+                    <i class="fa-solid fa-phone"></i> <span contenteditable="true" id="sender-phone">+57 300 665 1332</span>
+                </div>
             </div>
             <div class="signature-box">
                 <div class="signature-line"></div>
@@ -591,13 +604,11 @@
 
         const phoneField = document.getElementById('client-phone-field');
         const emailField = document.getElementById('client-email-field');
-        const senderPhoneField = document.getElementById('sender-phone');
         const waBtn = document.getElementById('whatsapp-btn');
         const mailBtn = document.getElementById('email-btn');
         const waInd = document.getElementById('wa-indicator');
         const waHelp = document.getElementById('wa-help-toast');
 
-        // Escuchar cambios para visibilidad de botones basándose en el contacto del cliente
         phoneField.addEventListener('input', function() {
             let val = this.innerText.replace(/\D/g, '');
             waBtn.style.display = val.length >= 10 ? 'flex' : 'none';
@@ -609,7 +620,6 @@
             mailBtn.style.display = emailRegex.test(this.innerText) ? 'flex' : 'none';
         });
 
-        // Placeholders manuales
         [phoneField, emailField].forEach(field => {
             const placeholder = field.id === 'client-phone-field' ? 'Número de contacto...' : 'Correo electrónico...';
             field.addEventListener('focus', function() { if (this.innerText === placeholder) this.innerText = ''; });
@@ -622,13 +632,9 @@
             
             if (clientNum) {
                 waHelp.style.display = 'block';
-                // Primero abrimos la impresión para el PDF
                 window.print();
-                
                 const msg = encodeURIComponent(`Hola ${clientName}, es un gusto saludarte. Según lo conversado, te envío la propuesta personalizada de Proppit adjunta en formato PDF para tu revisión. Quedo atento a tus dudas.`);
-                
                 setTimeout(() => {
-                    // Abrimos chat con el número del CLIENTE
                     window.open(`https://wa.me/${clientNum}?text=${msg}`, '_blank', 'noopener,noreferrer');
                     waHelp.style.display = 'none';
                 }, 1500);
@@ -641,10 +647,8 @@
             if (email && email !== 'Correo electrónico...') {
                 waHelp.style.display = 'block';
                 window.print();
-                
                 const subject = encodeURIComponent(`Propuesta Estratégica Proppit - ${client}`);
                 const body = encodeURIComponent(`Hola ${client},\n\nUn gusto saludarte. Adjunto envío la propuesta comercial de Proppit personalizada para tu operación, con el objetivo de optimizar tu gestión comercial y aumentar la conversión de tus leads.\n\nQuedo atento a tus comentarios para dar el siguiente paso.\n\nSaludos.`);
-                
                 setTimeout(() => {
                     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
                     waHelp.style.display = 'none';
