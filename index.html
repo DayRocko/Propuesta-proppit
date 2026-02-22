@@ -20,6 +20,7 @@
             --bg-accent: #E6F9F4;
             --white: #FFFFFF;
             --whatsapp: #25D366;
+            --email-blue: #4285F4;
         }
 
         * { box-sizing: border-box; }
@@ -84,7 +85,7 @@
             align-items: flex-start;
             border-bottom: 1px solid var(--grey-light);
             padding-bottom: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .logo-box h1 {
             font-family: 'Poppins', sans-serif;
@@ -109,35 +110,57 @@
 
         /* 2. TÍTULO PRINCIPAL / DESTINATARIO */
         .title-section {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .recipient-row {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 20px;
-            align-items: baseline;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
         .title-section h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 30px;
             color: var(--navy-deep);
             margin: 0;
-            line-height: 1.1;
+            line-height: 1;
         }
-        .title-section .subtitle {
-            font-size: 15px;
+        
+        .contact-info-row {
+            display: flex;
+            gap: 30px;
+            margin-top: 5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
             color: var(--grey-muted);
             border-bottom: 1px solid var(--grey-light);
+            min-width: 240px;
             padding-bottom: 2px;
         }
+        
+        .contact-item i {
+            color: var(--primary-green);
+            font-size: 14px;
+        }
 
-        /* 3. SECCIÓN DIAGNÓSTICO */
+        /* Sección de Diagnóstico */
+        .diagnosis-section {
+            margin-top: 30px;
+            margin-bottom: 12px;
+            padding-top: 10px;
+            border-top: 3px solid var(--navy-deep);
+        }
+
+        /* 3. SECCIÓN DIAGNÓSTICO ESTRATÉGICO */
         .strategic-grid {
-            height: 200px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
         }
         .card {
             padding: 12px 18px;
@@ -147,6 +170,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
+            height: auto;
         }
         .card label {
             font-family: 'Poppins', sans-serif;
@@ -160,11 +184,11 @@
             gap: 6px;
         }
         .card label i { color: var(--primary-green); }
-        .card .content { font-size: 12px; line-height: 1.4; color: var(--grey-dark); text-align: justify; overflow-y: auto; }
+        .card .content { font-size: 11.5px; line-height: 1.4; color: var(--grey-dark); text-align: justify; }
 
         /* 4. SOLUCIÓN / INVERSIÓN */
         .investment-section {
-            margin-top: 25px;
+            margin-top: 35px;
             margin-bottom: 20px;
         }
         
@@ -175,19 +199,20 @@
             box-shadow: 0 3px 10px rgba(0,0,0,0.03);
         }
         table { width: 100%; border-collapse: collapse; }
-        th { background: var(--navy-deep); color: var(--white); padding: 12px; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; text-align: left; }
+        th { background: var(--navy-deep); color: var(--white); padding: 12px; font-size: 9px; text-transform: uppercase; text-align: left; }
         td { padding: 14px 12px; border-bottom: 1px solid var(--grey-light); }
         .input-box { width: 100%; border: 1px solid var(--grey-light); padding: 8px; border-radius: 6px; font-weight: 700; font-size: 12px; color: var(--navy-deep); }
         
         select {
             width: 100%; padding: 8px; border: 1px solid var(--grey-light); border-radius: 6px;
-            font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: var(--navy-deep); background: var(--white);
+            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--navy-deep); background: var(--white);
             outline: none; cursor: pointer;
         }
 
         /* 5. FUNCIONALIDADES */
         .features-section {
-            margin-top: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
         }
         .features-grid {
             display: grid;
@@ -201,13 +226,14 @@
             border-radius: 10px;
             text-align: center;
             border: 1px solid #C6F6D5;
-            min-height: 170px;
             display: flex;
             flex-direction: column;
+            height: auto;
+            min-height: 140px; 
         }
         .feature-item i { font-size: 22px; color: var(--primary-green); margin-bottom: 8px; display: block; }
         .feature-item h4 { font-family: 'Poppins', sans-serif; font-size: 9.5px; margin: 0 0 5px 0; color: var(--navy-deep); text-transform: uppercase; line-height: 1.1; }
-        .feature-item p { font-size: 8.5px; line-height: 1.25; color: var(--grey-dark); margin: 0; text-align: center; }
+        .feature-item p { font-size: 10.5px; line-height: 1.3; color: var(--grey-dark); margin: 0; text-align: center; }
 
         /* 6. CTA BANNER */
         .cta-section {
@@ -217,7 +243,8 @@
             justify-content: center;
             background: var(--navy-deep);
             border-radius: 8px;
-            margin: 15px 0;
+            margin-top: auto; 
+            margin-bottom: 20px;
             color: var(--white);
             text-align: center;
         }
@@ -227,7 +254,6 @@
         /* 7. FOOTER */
         footer {
             height: 70px;
-            margin-top: auto;
             border-top: 1px solid var(--grey-light);
             display: flex;
             justify-content: space-between;
@@ -243,7 +269,7 @@
         .signature-box span { font-size: 8px; text-transform: uppercase; font-weight: 700; color: var(--grey-muted); }
         .signature-box strong { font-size: 12px; color: var(--navy-deep); display: block; }
 
-        /* Toolbar externa */
+        /* Toolbar */
         .toolbar {
             position: fixed;
             top: 20px;
@@ -272,7 +298,7 @@
         }
         .toolbar-btn.wa { 
             background: var(--whatsapp); 
-            display: none; /* Se activa mediante JS */
+            display: none; 
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -282,8 +308,19 @@
             box-shadow: 0 5px 15px rgba(37,211,102,0.4);
             animation: fadeIn 0.4s ease forwards;
         }
+        .toolbar-btn.mail { 
+            background: var(--email-blue); 
+            display: none; 
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            justify-content: center;
+            padding: 0;
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(66,133,244,0.4);
+            animation: fadeIn 0.4s ease forwards;
+        }
 
-        /* Notificación de Ayuda */
         #wa-help-toast {
             position: fixed;
             top: 80px;
@@ -295,7 +332,7 @@
             font-size: 11px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             z-index: 999;
-            width: 200px;
+            width: 220px;
             display: none;
             line-height: 1.4;
             border-left: 4px solid var(--primary-green);
@@ -323,16 +360,19 @@
         <button class="toolbar-btn" onclick="window.print()">
             <i class="fa-solid fa-file-pdf"></i> GENERAR PDF
         </button>
-        <!-- Botón de WhatsApp Redondo Tradicional -->
-        <button id="whatsapp-btn" class="toolbar-btn wa" title="Preparar PDF y enviar por WhatsApp" onclick="sendViaWhatsApp()">
+        <!-- Botón de WhatsApp -->
+        <button id="whatsapp-btn" class="toolbar-btn wa" title="Enviar por WhatsApp" onclick="sendViaWhatsApp()">
             <i class="fa-brands fa-whatsapp"></i>
+        </button>
+        <!-- Botón de Email -->
+        <button id="email-btn" class="toolbar-btn mail" title="Enviar por Email" onclick="sendViaEmail()">
+            <i class="fa-solid fa-envelope"></i>
         </button>
     </div>
 
-    <!-- Indicador de ayuda para el envío -->
     <div id="wa-help-toast">
         ✨ <strong>¡Casi listo!</strong><br>
-        Se abrirá el asistente para guardar el PDF. Una vez guardado, se abrirá WhatsApp para que lo adjuntes.
+        Se preparará el PDF. Luego se abrirá tu aplicación para que lo adjuntes al mensaje sugerido.
     </div>
 
     <div class="page">
@@ -356,27 +396,55 @@
             <div class="section-title-uniform">Propuesta preparada para</div>
             <div class="recipient-row">
                 <h2 contenteditable="true" id="client-name-top">Carla Saldarriaga</h2>
-                <div class="subtitle" contenteditable="true" id="client-phone-field">Número de contacto...</div>
+                <div class="contact-info-row">
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div contenteditable="true" id="client-email-field">Correo electrónico...</div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-mobile-alt"></i>
+                        <div contenteditable="true" id="client-phone-field">Número de contacto...</div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 3. DIAGNÓSTICO -->
+        <!-- DIAGNÓSTICO DE OPERACIÓN -->
+        <section class="diagnosis-section">
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 15px; align-items: center;">
+                <div class="section-title-uniform" style="margin-bottom: 0; flex: none;">
+                    Diagnóstico de Tu Operación Comercial
+                </div>
+                <div style="max-width: 320px;">
+                    <select id="diagnosis-scenario" onchange="autoFillScenarios()" style="border-color: var(--primary-green);">
+                        <option value="default">ESCENARIO ACTUAL E IMPACTO CON PROPPIT</option>
+                        <option value="fuga">FUGA DE LEADS POR RESPUESTA LENTA</option>
+                        <option value="frios">LEADS FRÍOS Y PÉRDIDA DE TIEMPO</option>
+                        <option value="visibilidad">BAJA VISIBILIDAD Y ALCANCE LIMITADO</option>
+                        <option value="desorganizacion">DESORGANIZACIÓN Y FALTA DE SEGUIMIENTO</option>
+                        <option value="competencia">COMPETENCIA DIGITAL MÁS AVANZADA</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. DIAGNÓSTICO ESTRATÉGICO -->
         <div class="strategic-grid">
             <div class="card">
                 <label><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnóstico</label>
-                <div class="content" contenteditable="true">Resume la situación actual del cliente y el problema identificado. Demuestra que escuchaste sus necesidades para generar confianza inmediata.</div>
+                <div class="content" id="card-diag" contenteditable="true">Resume la situación actual del cliente y el problema identificado. Demuestra que escuchaste sus necesidades para generar confianza inmediata.</div>
             </div>
             <div class="card">
                 <label><i class="fa-solid fa-bullseye"></i> Objetivo Estratégico</label>
-                <div class="content" contenteditable="true">Define claramente qué se quiere lograr (ej. "Aumentar captación de leads calificados en un 20%"). Debe ser una meta específica y medible.</div>
+                <div class="content" id="card-obj" contenteditable="true">Define claramente qué se quiere lograr (ej. "Aumentar captación de leads calificados en un 20%"). Debe ser una meta específica y medible.</div>
             </div>
             <div class="card">
                 <label><i class="fa-solid fa-wand-magic-sparkles"></i> Solución</label>
-                <div class="content" contenteditable="true">Detalla los servicios específicos que resuelven el problema. Enfócate en la solución técnica que ofrece Proppit para optimizar tu gestión comercial.</div>
+                <div class="content" id="card-sol" contenteditable="true">Detalla los servicios específicos que resuelven el problema. Enfócate en la solución técnica que ofrece Proppit para optimizar tu gestión comercial.</div>
             </div>
             <div class="card">
                 <label><i class="fa-solid fa-award"></i> Propuesta de Valor</label>
-                <div class="content" contenteditable="true">Explica por qué nuestra tecnología es superior. Destaca el filtrado de calidad frente a la visibilidad masiva y genérica de la competencia tradicional.</div>
+                <div class="content" id="card-val" contenteditable="true">Explica por qué nuestra tecnología es superior. Destaca el filtrado de calidad frente a la visibilidad masiva y genérica de la competencia tradicional.</div>
             </div>
         </div>
 
@@ -398,25 +466,14 @@
                             <td><div class="input-box" contenteditable="true">Plan Premium Proppit</div></td>
                             <td>
                                 <select id="product-select">
-                                    <option value="10 Destacados">10 Destacados</option>
-                                    <option value="15 Destacados">15 Destacados</option>
-                                    <option value="25 Destacados">25 Destacados</option>
-                                    <option value="35 Destacados">35 Destacados</option>
-                                    <option value="50 Destacados" selected>50 Destacados</option>
-                                    <option value="75 Destacados">75 Destacados</option>
-                                    <option value="100 Destacados">100 Destacados</option>
-                                    <option value="150 Destacados">150 Destacados</option>
-                                    <option value="200 Destacados">200 Destacados</option>
-                                    <option value="300 Destacados">300 Destacados</option>
-                                    <option value="400 Destacados">400 Destacados</option>
-                                    <option value="500 Destacados">500 Destacados</option>
-                                    <option value="600 Destacados">600 Destacados</option>
-                                    <option value="800 Destacados">800 Destacados</option>
-                                    <option value="1,000 Destacados">1,000 Destacados</option>
-                                    <option value="2,000 Destacados">2,000 Destacados</option>
-                                    <option value="3,000 Destacados">3,000 Destacados</option>
-                                    <option value="4,000 Destacados">4,000 Destacados</option>
-                                    <option value="5,000 Destacados">5,000 Destacados</option>
+                                    <option value="10">10 Destacados</option>
+                                    <option value="25">25 Destacados</option>
+                                    <option value="50" selected>50 Destacados</option>
+                                    <option value="100">100 Destacados</option>
+                                    <option value="200">200 Destacados</option>
+                                    <option value="500">500 Destacados</option>
+                                    <option value="1,000">1,000 Destacados</option>
+                                    <option value="5,000">5,000 Destacados</option>
                                 </select>
                             </td>
                             <td>
@@ -482,63 +539,125 @@
     </div>
 
     <script>
+        const scenarios = {
+            fuga: {
+                diag: "Solo 40% de leads contactados en 24h. Perdidas anuales y pocos cierres por demora de respuesta.",
+                obj: "Aumentar contacto efectivo de 30% a 85% en primeros 5 minutos. Disponibilidad 24/7 capturando 95% leads entrantes.",
+                sol: "Lucía IA responde instantáneamente WhatsApp, califica leads automáticamente, atiende citas 24/7 sin descanso.",
+                val: "Recuperas 55% ventas perdidas. Nunca pierdes leads por demora. La inmobiliaria solo atiende calificados listos para cerrar."
+            },
+            frios: {
+                diag: "Más del 70% del tiempo con leads sin presupuesto real. Solo 5-8% convierten. Se persiguen clientes fantasmas.",
+                obj: "Aumentar conversión de 5% a 25-30%. Reducir tiempo desperdiciado 50%. Triplicar productividad del equipo comercial.",
+                sol: "Matching Leads + Lead Plus verifican presupuesto e intención real automáticamente antes de enviarte el contacto calificado.",
+                val: "Conversión 5 veces más. La inmobiliaria triplica comisiones con mitad del esfuerzo. El retorno a la inversión se hace visible mas rápido."
+            },
+            visibilidad: {
+                diag: "Propiedades en 1-2 portales con info desactualizada. Alcanzas solo 20% mercado potencial. Pierdes 60% oportunidades por invisibilidad.",
+                obj: "Multiplicar visibilidad 6 veces más en portales + redes sociales. Alcanzar 80% mercado. Aumentar leads con Superdestacados.",
+                sol: "Difusión Multi-Portal sincroniza inventario en 6 portales + redes sociales simultáneamente. Una actualización replica en todos instantáneamente.",
+                val: "Tiempo de publicación de 10 horas a 5 minutos por semana. Dominas mercado digital nacional y global."
+            },
+            desorganizacion: {
+                diag: "Leads gestionados en WhatsApp personal, Excel y agenda. El 40% se pierden por falta de eficiencia operativa. Sin CRM.",
+                obj: "Centralizar 100% gestión en plataforma unificada con visibilidad en tiempo real. Reducir leads perdidos de 40% a menos del 10%.",
+                sol: "CRM Inmobiliario centraliza todos los leads, impresiones, visitas, solicitudes y propiedades.",
+                val: "Control total en tiempo real desde celular. Reduces perdida de clientes. Aumentas cierre. Decisiones basadas en data."
+            },
+            competencia: {
+                diag: "Competidores usan IA y automatización. Cierran más rápido con menos recursos. Perdida de oportunidades ante inmobiliarias con IA integrada.",
+                obj: "Modernizar y aumentar visualizaciones. Respuesta < 5min, automatización completa, experiencia omnicanal líder regional.",
+                sol: "Plataforma Proppit Completa: Lucía IA + Matching + Multi-Portal + MiniCRM + Analítica.",
+                val: "Saltas 5 años de evolución digital en 30 días. Diferenciación competitiva real. Atraes mejores colegas, propiedades y clientes."
+            },
+            default: {
+                diag: "Resume la situación actual del cliente y el problema identificado. Demuestra que escuchaste sus necesidades para generar confianza inmediata.",
+                obj: "Define claramente qué se quiere lograr (ej. \"Aumentar captación de leads calificados en un 20%\"). Debe ser una meta específica y medible.",
+                sol: "Detalla los servicios específicos que resuelven el problema. Enfócate en la solución técnica que ofrece Proppit para optimizar tu gestión comercial.",
+                val: "Explica por qué nuestra tecnología es superior. Destaca el filtrado de calidad frente a la visibilidad masiva y genérica de la competencia tradicional."
+            }
+        };
+
+        function autoFillScenarios() {
+            const selection = document.getElementById('diagnosis-scenario').value;
+            const data = scenarios[selection];
+            const cards = ['diag', 'obj', 'sol', 'val'];
+            cards.forEach(key => {
+                const el = document.getElementById(`card-${key}`);
+                el.innerText = data[key];
+                el.contentEditable = (selection === 'default');
+            });
+        }
+
         function updateDate() {
             const options = { day: 'numeric', month: 'long', year: 'numeric' };
-            const today = new Date();
-            document.getElementById('current-date').innerText = today.toLocaleDateString('es-ES', options);
+            document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', options);
         }
+
         window.onbeforeprint = updateDate;
         window.onload = () => {
             updateDate();
             document.getElementById('wa-indicator').style.display = 'none';
         };
 
-        // Lógica de Sincronización de Nombres
         const topName = document.getElementById('client-name-top');
         const bottomName = document.getElementById('client-name-bottom');
+        topName.addEventListener('input', function() { bottomName.innerText = this.innerText; });
 
-        topName.addEventListener('input', function() {
-            bottomName.innerText = this.innerText;
-        });
-
-        // Lógica de WhatsApp y contacto
         const phoneField = document.getElementById('client-phone-field');
+        const emailField = document.getElementById('client-email-field');
         const waBtn = document.getElementById('whatsapp-btn');
+        const mailBtn = document.getElementById('email-btn');
         const waInd = document.getElementById('wa-indicator');
         const waHelp = document.getElementById('wa-help-toast');
 
+        // Escuchar cambios para visibilidad de botones
         phoneField.addEventListener('input', function() {
             let val = this.innerText.replace(/\D/g, '');
-            if (val.length >= 10) {
-                waBtn.style.display = 'flex';
-                waInd.style.display = 'flex';
-            } else {
-                waBtn.style.display = 'none';
-                waInd.style.display = 'none';
-                waHelp.style.display = 'none';
-            }
+            waBtn.style.display = val.length >= 10 ? 'flex' : 'none';
+            waInd.style.display = val.length >= 10 ? 'flex' : 'none';
         });
 
-        phoneField.addEventListener('focus', function() { if (this.innerText === 'Número de contacto...') this.innerText = ''; });
-        phoneField.addEventListener('blur', function() { if (this.innerText === '') this.innerText = 'Número de contacto...'; });
+        emailField.addEventListener('input', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            mailBtn.style.display = emailRegex.test(this.innerText) ? 'flex' : 'none';
+        });
+
+        // Placeholders manuales
+        [phoneField, emailField].forEach(field => {
+            const placeholder = field.id === 'client-phone-field' ? 'Número de contacto...' : 'Correo electrónico...';
+            field.addEventListener('focus', function() { if (this.innerText === placeholder) this.innerText = ''; });
+            field.addEventListener('blur', function() { if (this.innerText === '') this.innerText = placeholder; });
+        });
 
         function sendViaWhatsApp() {
             const num = phoneField.innerText.replace(/\D/g, '');
             const client = bottomName.innerText;
             if (num) {
-                // 1. Mostrar ayuda visual
                 waHelp.style.display = 'block';
-                
-                // 2. Disparar impresión (para que guarden el PDF)
                 window.print();
-                
-                // 3. Preparar mensaje y abrir WhatsApp con retraso para que de tiempo a cerrar la impresión
                 const msg = encodeURIComponent(`Hola ${client}, envío tu propuesta de Proppit personalizada para tu revisión. Adjunto el PDF a continuación.`);
-                
                 setTimeout(() => {
                     window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
                     waHelp.style.display = 'none';
-                }, 1000);
+                }, 1200);
+            }
+        }
+
+        function sendViaEmail() {
+            const email = emailField.innerText;
+            const client = bottomName.innerText;
+            if (email && email !== 'Correo electrónico...') {
+                waHelp.style.display = 'block';
+                window.print();
+                
+                const subject = encodeURIComponent(`Propuesta Estratégica Proppit - ${client}`);
+                const body = encodeURIComponent(`Hola ${client},\n\nUn gusto saludarte. Adjunto envío la propuesta comercial de Proppit personalizada para tu operación, con el objetivo de optimizar tu gestión comercial y aumentar la conversión de tus leads.\n\nQuedo atento a tus comentarios para dar el siguiente paso.\n\nSaludos.`);
+                
+                setTimeout(() => {
+                    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+                    waHelp.style.display = 'none';
+                }, 1200);
             }
         }
     </script>
