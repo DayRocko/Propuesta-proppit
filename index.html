@@ -44,7 +44,7 @@
         [contenteditable="true"]:hover { background-color: rgba(0, 217, 163, 0.1); cursor: text; }
         [contenteditable="true"]:focus { background-color: var(--white); box-shadow: 0 0 0 2px var(--primary-green); }
 
-        /* Contenedor Principal (Hoja Carta) */
+        /* Contenedor Principal (Hoja Carta: 816x1056px) */
         .page {
             width: 816px;
             height: 1056px;
@@ -591,7 +591,9 @@
 
         function updateDate() {
             const options = { day: 'numeric', month: 'long', year: 'numeric' };
-            document.getElementById('current-date').innerText = new Date().toLocaleDateString('es-ES', options);
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('es-ES', options);
+            document.getElementById('current-date').innerText = dateStr;
         }
 
         window.onbeforeprint = updateDate;
@@ -638,7 +640,7 @@
                 window.print();
                 const msg = encodeURIComponent(`Hola ${client}, envío tu propuesta de Proppit personalizada para tu revisión. Adjunto el PDF a continuación.`);
                 setTimeout(() => {
-                    window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
+                    window.open(`https://wa.me/${num}?text=${msg}`, '_blank', 'noopener,noreferrer');
                     waHelp.style.display = 'none';
                 }, 1200);
             }
@@ -661,28 +663,5 @@
             }
         }
     </script>
-<script>
-    // 1. Guardar automáticamente mientras el usuario escribe
-    document.addEventListener('input', function (e) {
-        if (e.target.hasAttribute('contenteditable')) {
-            const allEditable = document.querySelectorAll('[contenteditable="true"]');
-            const data = Array.from(allEditable).map(el => el.innerHTML);
-            localStorage.setItem('propuestaData_Proppit', JSON.stringify(data));
-        }
-    });
-
-    // 2. Cargar los datos guardados cuando el usuario abra el link
-    window.addEventListener('load', function () {
-        const savedData = JSON.parse(localStorage.getItem('propuestaData_Proppit'));
-        if (savedData) {
-            const allEditable = document.querySelectorAll('[contenteditable="true"]');
-            allEditable.forEach((el, index) => {
-                if (savedData[index] !== undefined) {
-                    el.innerHTML = savedData[index];
-                }
-            });
-        }
-    });
-</script>
 </body>
 </html>
