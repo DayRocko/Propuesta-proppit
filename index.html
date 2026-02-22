@@ -44,7 +44,7 @@
         [contenteditable="true"]:hover { background-color: rgba(0, 217, 163, 0.1); cursor: text; }
         [contenteditable="true"]:focus { background-color: var(--white); box-shadow: 0 0 0 2px var(--primary-green); }
 
-        /* Contenedor Principal (Hoja Carta: 816x1056px) */
+        /* Contenedor Principal */
         .page {
             width: 816px;
             height: 1056px;
@@ -57,7 +57,6 @@
             box-shadow: 0 0 40px rgba(0,0,0,0.2);
         }
 
-        /* Estilo Unificado para Títulos de Sección */
         .section-title-uniform {
             font-family: 'Poppins', sans-serif;
             font-size: 11px;
@@ -109,14 +108,8 @@
         .wa-status { color: var(--primary-green); font-weight: 700; margin-top: 3px; display: none; align-items: center; justify-content: flex-end; gap: 5px; }
 
         /* 2. TÍTULO PRINCIPAL / DESTINATARIO */
-        .title-section {
-            margin-bottom: 10px;
-        }
-        .recipient-row {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
+        .title-section { margin-bottom: 10px; }
+        .recipient-row { display: flex; flex-direction: column; gap: 5px; }
         .title-section h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 30px;
@@ -125,12 +118,7 @@
             line-height: 1;
         }
         
-        .contact-info-row {
-            display: flex;
-            gap: 30px;
-            margin-top: 5px;
-        }
-        
+        .contact-info-row { display: flex; gap: 30px; margin-top: 5px; }
         .contact-item {
             display: flex;
             align-items: center;
@@ -141,11 +129,7 @@
             min-width: 240px;
             padding-bottom: 2px;
         }
-        
-        .contact-item i {
-            color: var(--primary-green);
-            font-size: 14px;
-        }
+        .contact-item i { color: var(--primary-green); font-size: 14px; }
 
         /* Sección de Diagnóstico */
         .diagnosis-section {
@@ -155,7 +139,7 @@
             border-top: 3px solid var(--navy-deep);
         }
 
-        /* 3. SECCIÓN DIAGNÓSTICO ESTRATÉGICO */
+        /* 3. SECCIÓN DIAGNÓSTICO ESTRATÉGICO con Marcas de Agua */
         .strategic-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -170,7 +154,23 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
+            position: relative;
+            z-index: 1;
             height: auto;
+            min-height: 110px;
+        }
+        /* Marcas de agua de orden */
+        .card::before {
+            content: attr(data-order);
+            position: absolute;
+            bottom: 5px;
+            right: 15px;
+            font-size: 60px;
+            font-weight: 800;
+            color: var(--primary-green);
+            opacity: 0.1;
+            z-index: -1;
+            font-family: 'Poppins', sans-serif;
         }
         .card label {
             font-family: 'Poppins', sans-serif;
@@ -187,17 +187,8 @@
         .card .content { font-size: 11.5px; line-height: 1.4; color: var(--grey-dark); text-align: justify; }
 
         /* 4. SOLUCIÓN / INVERSIÓN */
-        .investment-section {
-            margin-top: 35px;
-            margin-bottom: 20px;
-        }
-        
-        .table-container {
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--grey-light);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
-        }
+        .investment-section { margin-top: 35px; margin-bottom: 20px; }
+        .table-container { border-radius: 10px; overflow: hidden; border: 1px solid var(--grey-light); box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
         table { width: 100%; border-collapse: collapse; }
         th { background: var(--navy-deep); color: var(--white); padding: 12px; font-size: 9px; text-transform: uppercase; text-align: left; }
         td { padding: 14px 12px; border-bottom: 1px solid var(--grey-light); }
@@ -205,21 +196,14 @@
         
         select {
             width: 100%; padding: 8px; border: 1px solid var(--grey-light); border-radius: 6px;
-            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--navy-deep); background: var(--white);
-            outline: none; cursor: pointer;
+            font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--navy-deep); background: var(--white);
+            outline: none; cursor: pointer; transition: all 0.2s;
         }
+        select:hover { border-color: var(--primary-green); }
 
         /* 5. FUNCIONALIDADES */
-        .features-section {
-            margin-top: 5px;
-            margin-bottom: 15px;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            padding: 5px 0;
-        }
+        .features-section { margin-top: 5px; margin-bottom: 15px; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 5px 0; }
         .feature-item {
             background: var(--bg-accent);
             padding: 12px;
@@ -228,7 +212,6 @@
             border: 1px solid #C6F6D5;
             display: flex;
             flex-direction: column;
-            height: auto;
             min-height: 140px; 
         }
         .feature-item i { font-size: 22px; color: var(--primary-green); margin-bottom: 8px; display: block; }
@@ -361,7 +344,7 @@
             <i class="fa-solid fa-file-pdf"></i> GENERAR PDF
         </button>
         <!-- Botón de WhatsApp -->
-        <button id="whatsapp-btn" class="toolbar-btn wa" title="Enviar por WhatsApp" onclick="sendViaWhatsApp()">
+        <button id="whatsapp-btn" class="toolbar-btn wa" title="Enviar Propuesta por WhatsApp" onclick="sendViaWhatsApp()">
             <i class="fa-brands fa-whatsapp"></i>
         </button>
         <!-- Botón de Email -->
@@ -371,8 +354,8 @@
     </div>
 
     <div id="wa-help-toast">
-        ✨ <strong>¡Casi listo!</strong><br>
-        Se preparará el PDF. Luego se abrirá tu aplicación para que lo adjuntes al mensaje sugerido.
+        ✨ <strong>¡Preparando envío!</strong><br>
+        Se generará el PDF. Luego adjúntalo en el chat de WhatsApp que se abrirá automáticamente.
     </div>
 
     <div class="page">
@@ -409,40 +392,40 @@
             </div>
         </section>
 
-        <!-- DIAGNÓSTICO DE OPERACIÓN -->
+        <!-- DIAGNÓSTICO DE OPERACIÓN - Selector con iconos y mayor tamaño -->
         <section class="diagnosis-section">
             <div style="display: grid; grid-template-columns: auto 1fr; gap: 15px; align-items: center;">
                 <div class="section-title-uniform" style="margin-bottom: 0; flex: none;">
                     Diagnóstico de Tu Operación Comercial
                 </div>
-                <div style="max-width: 320px;">
-                    <select id="diagnosis-scenario" onchange="autoFillScenarios()" style="border-color: var(--primary-green);">
-                        <option value="default">ESCENARIO ACTUAL E IMPACTO CON PROPPIT</option>
-                        <option value="fuga">FUGA DE LEADS POR RESPUESTA LENTA</option>
-                        <option value="frios">LEADS FRÍOS Y PÉRDIDA DE TIEMPO</option>
-                        <option value="visibilidad">BAJA VISIBILIDAD Y ALCANCE LIMITADO</option>
-                        <option value="desorganizacion">DESORGANIZACIÓN Y FALTA DE SEGUIMIENTO</option>
-                        <option value="competencia">COMPETENCIA DIGITAL MÁS AVANZADA</option>
+                <div style="max-width: 350px;">
+                    <select id="diagnosis-scenario" onchange="autoFillScenarios()" style="border-color: var(--primary-green); font-size: 13px; padding: 10px;">
+                        <option value="default">📘 Escenario actual e impacto con Proppit</option>
+                        <option value="fuga">⚡ Cierre de Ventas en Tiempo Real</option>
+                        <option value="frios">🎯 Foco en Compradores Calificados</option>
+                        <option value="visibilidad">🌐 Expansión Omnicanal en el Mercado</option>
+                        <option value="desorganizacion">📈 Gestión Comercial de Alta Precisión</option>
+                        <option value="competencia">🏆 Liderazgo Tecnológico en el Sector</option>
                     </select>
                 </div>
             </div>
         </section>
 
-        <!-- 3. DIAGNÓSTICO ESTRATÉGICO -->
+        <!-- 3. DIAGNÓSTICO ESTRATÉGICO - Con números de orden -->
         <div class="strategic-grid">
-            <div class="card">
+            <div class="card" data-order="1">
                 <label><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnóstico</label>
                 <div class="content" id="card-diag" contenteditable="true">Resume la situación actual del cliente y el problema identificado. Demuestra que escuchaste sus necesidades para generar confianza inmediata.</div>
             </div>
-            <div class="card">
+            <div class="card" data-order="2">
                 <label><i class="fa-solid fa-bullseye"></i> Objetivo Estratégico</label>
                 <div class="content" id="card-obj" contenteditable="true">Define claramente qué se quiere lograr (ej. "Aumentar captación de leads calificados en un 20%"). Debe ser una meta específica y medible.</div>
             </div>
-            <div class="card">
+            <div class="card" data-order="3">
                 <label><i class="fa-solid fa-wand-magic-sparkles"></i> Solución</label>
                 <div class="content" id="card-sol" contenteditable="true">Detalla los servicios específicos que resuelven el problema. Enfócate en la solución técnica que ofrece Proppit para optimizar tu gestión comercial.</div>
             </div>
-            <div class="card">
+            <div class="card" data-order="4">
                 <label><i class="fa-solid fa-award"></i> Propuesta de Valor</label>
                 <div class="content" id="card-val" contenteditable="true">Explica por qué nuestra tecnología es superior. Destaca el filtrado de calidad frente a la visibilidad masiva y genérica de la competencia tradicional.</div>
             </div>
@@ -528,7 +511,7 @@
             <div class="author">
                 <h4 contenteditable="true">Dayro Leal</h4>
                 <p>Hunter Agencies | Partner Estratégico Proppit</p>
-                <p><i class="fa-solid fa-phone"></i> <span contenteditable="true">+57 300 665 1332</span></p>
+                <p><i class="fa-solid fa-phone"></i> <span contenteditable="true" id="sender-phone">+57 300 665 1332</span></p>
             </div>
             <div class="signature-box">
                 <div class="signature-line"></div>
@@ -608,12 +591,13 @@
 
         const phoneField = document.getElementById('client-phone-field');
         const emailField = document.getElementById('client-email-field');
+        const senderPhoneField = document.getElementById('sender-phone');
         const waBtn = document.getElementById('whatsapp-btn');
         const mailBtn = document.getElementById('email-btn');
         const waInd = document.getElementById('wa-indicator');
         const waHelp = document.getElementById('wa-help-toast');
 
-        // Escuchar cambios para visibilidad de botones
+        // Escuchar cambios para visibilidad de botones basándose en el contacto del cliente
         phoneField.addEventListener('input', function() {
             let val = this.innerText.replace(/\D/g, '');
             waBtn.style.display = val.length >= 10 ? 'flex' : 'none';
@@ -633,16 +617,21 @@
         });
 
         function sendViaWhatsApp() {
-            const num = phoneField.innerText.replace(/\D/g, '');
-            const client = bottomName.innerText;
-            if (num) {
+            const clientNum = phoneField.innerText.replace(/\D/g, '');
+            const clientName = bottomName.innerText;
+            
+            if (clientNum) {
                 waHelp.style.display = 'block';
+                // Primero abrimos la impresión para el PDF
                 window.print();
-                const msg = encodeURIComponent(`Hola ${client}, envío tu propuesta de Proppit personalizada para tu revisión. Adjunto el PDF a continuación.`);
+                
+                const msg = encodeURIComponent(`Hola ${clientName}, es un gusto saludarte. Según lo conversado, te envío la propuesta personalizada de Proppit adjunta en formato PDF para tu revisión. Quedo atento a tus dudas.`);
+                
                 setTimeout(() => {
-                    window.open(`https://wa.me/${num}?text=${msg}`, '_blank', 'noopener,noreferrer');
+                    // Abrimos chat con el número del CLIENTE
+                    window.open(`https://wa.me/${clientNum}?text=${msg}`, '_blank', 'noopener,noreferrer');
                     waHelp.style.display = 'none';
-                }, 1200);
+                }, 1500);
             }
         }
 
