@@ -248,8 +248,9 @@
         }
         .feature-item:last-child { border-right: none; }
 
+        /* Tamaño reducido de iconos solicitado */
         .feature-item i { 
-            font-size: 24px; 
+            font-size: 20px; 
             color: var(--primary-green); 
             margin-bottom: 12px; 
             display: block; 
@@ -321,7 +322,7 @@
             border-radius: 8px; margin-top: 10px; margin-bottom: 10px; color: var(--white);
         }
         
-        /* 8. FOOTER - ACTUALIZADO */
+        /* 8. FOOTER */
         footer { height: 60px; border-top: 1px solid var(--grey-light); display: flex; justify-content: space-between; align-items: center; padding-top: 5px; margin-top: auto; }
         .author-box { display: flex; align-items: center; gap: 15px; }
         .author-box h4 { font-size: 13.5px; margin: 0; color: var(--navy-deep); font-weight: 700; }
@@ -377,7 +378,7 @@
         <button id="email-btn" class="toolbar-btn mail" title="Email" onclick="sendViaEmail()"><i class="fa-solid fa-envelope"></i></button>
     </div>
 
-    <div id="wa-help-toast">✨ <strong>¡Preparando envío!</strong><br>Se generará el PDF. Luego adjúntalo al mensaje automático.</div>
+    <div id="wa-help-toast">✨ <strong>¡Casi listo!</strong><br>Se preparará el PDF. Luego adjúntalo al chat que se abrirá automáticamente.</div>
 
     <div class="page">
         <!-- 1. HEADER -->
@@ -516,13 +517,13 @@
                 <div class="world-map-overlay">
                     <svg viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <pattern id="dotPattern" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+                            <pattern id="dotPatternCorregido" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
                                 <circle cx="4" cy="4" r="1.6" fill="var(--navy-deep)" />
                             </pattern>
                         </defs>
-                        <path d="M50,50 C100,50 150,80 200,150 C250,220 200,380 150,380 C100,380 50,220 50,50" fill="url(#dotPattern)" />
-                        <path d="M420,40 C480,40 550,40 600,100 C650,160 620,350 550,350 C480,350 400,200 420,40" fill="url(#dotPattern)" />
-                        <path d="M680,50 C750,50 950,50 980,150 C1000,250 900,380 800,380 C700,380 650,250 680,50" fill="url(#dotPattern)" />
+                        <path d="M50,50 C100,50 150,80 200,150 C250,220 200,380 150,380 C100,380 50,220 50,50" fill="url(#dotPatternCorregido)" />
+                        <path d="M420,40 C480,40 550,40 600,100 C650,160 620,350 550,350 C480,350 400,200 420,40" fill="url(#dotPatternCorregido)" />
+                        <path d="M680,50 C750,50 950,50 980,150 C1000,250 900,380 800,380 C700,380 650,250 680,50" fill="url(#dotPatternCorregido)" />
                     </svg>
                 </div>
                 
@@ -663,44 +664,54 @@
             });
         };
 
+        // Algoritmo Optimizado de Envío WhatsApp (Velocidad Pro)
         function sendViaWhatsApp() {
             const phoneField = document.getElementById('client-phone-field');
-            const bottomName = document.getElementById('client-name-bottom');
+            const clientName = document.getElementById('client-name-bottom').innerText;
             const waHelp = document.getElementById('wa-help-toast');
             
-            if (!phoneField || !bottomName) return;
+            if (!phoneField) return;
             
-            const clientNum = phoneField.innerText.replace(/\D/g, '');
-            const clientName = bottomName.innerText;
-            if (clientNum) {
+            const num = phoneField.innerText.replace(/\D/g, '');
+            if (num.length >= 10) {
                 if (waHelp) waHelp.style.display = 'block';
+                
+                // Preparación instantánea de mensaje
+                const msg = `Hola ${clientName}, es un gusto saludarte. Adjunto envío la propuesta personalizada de Proppit en PDF. Quedo atento a tus dudas.`;
+                const waUrl = `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+                
+                // Gatillo de impresión para PDF
                 window.print();
-                const msg = encodeURIComponent(`Hola ${clientName}, es un gusto saludarte. Según lo conversado, te envío la propuesta personalizada de Proppit adjunta en formato PDF para tu revisión. Quedo atento a tus dudas.`);
+                
+                // Redirección ultra rápida al chat del cliente
                 setTimeout(() => {
-                    window.open(`https://wa.me/${clientNum}?text=${msg}`, '_blank', 'noopener,noreferrer');
+                    window.open(waUrl, '_blank', 'noopener,noreferrer');
                     if (waHelp) waHelp.style.display = 'none';
-                }, 1500);
+                }, 800); // Latencia optimizada de 1500ms a 800ms
             }
         }
 
+        // Algoritmo Optimizado de Envío Correo
         function sendViaEmail() {
             const emailField = document.getElementById('client-email-field');
-            const bottomName = document.getElementById('client-name-bottom');
+            const clientName = document.getElementById('client-name-bottom').innerText;
             const waHelp = document.getElementById('wa-help-toast');
             
-            if (!emailField || !bottomName) return;
+            if (!emailField) return;
 
             const email = emailField.innerText;
-            const client = bottomName.innerText;
-            if (email && email !== 'Correo electrónico...') {
+            if (email && email !== 'Correo electrónico...' && email.includes('@')) {
                 if (waHelp) waHelp.style.display = 'block';
+                
+                const subject = `Propuesta Estratégica Proppit - ${clientName}`;
+                const body = `Hola ${clientName},\n\nUn gusto saludarte. Adjunto envío la propuesta comercial de Proppit personalizada para tu operación.\n\nSaludos.`;
+                
                 window.print();
-                const subject = encodeURIComponent(`Propuesta Estratégica Proppit - ${client}`);
-                const body = encodeURIComponent(`Hola ${client},\n\nUn gusto saludarte. Adjunto envío la propuesta comercial de Proppit personalizada para tu operación, con el objetivo de optimizar tu gestión comercial y aumentar la conversión de tus leads.\n\nQuedo atento a tus comentarios para dar el siguiente paso.\n\nSaludos.`);
+                
                 setTimeout(() => {
-                    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+                    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     if (waHelp) waHelp.style.display = 'none';
-                }, 1200);
+                }, 800);
             }
         }
     </script>
