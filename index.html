@@ -49,7 +49,7 @@
             width: 816px;
             height: 1056px;
             background: var(--white);
-            padding: 35px 50px;
+            padding: 20px 50px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -64,7 +64,7 @@
             text-transform: uppercase;
             color: var(--navy-deep);
             letter-spacing: 1.5px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -76,19 +76,44 @@
             background: var(--grey-light);
         }
 
+        .add-row-btn {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: transform 0.2s;
+            margin-left: 10px;
+        }
+        .add-row-btn:hover { transform: scale(1.1); }
+        .delete-row-btn {
+            color: #FF6B6B;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 5px;
+            transition: 0.2s;
+        }
+
         /* 1. HEADER */
         header {
-            height: 80px;
+            height: 65px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             border-bottom: 1px solid var(--grey-light);
-            padding-bottom: 10px;
-            margin-bottom: 10px;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
         }
+        .logo-box { display: flex; align-items: baseline; gap: 12px; }
         .logo-box h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 30px;
+            font-size: 38px;
             color: var(--navy-deep);
             margin: 0;
             font-weight: 800;
@@ -96,67 +121,48 @@
         }
         .logo-box h1 span { color: var(--primary-green); }
         .logo-box p {
-            font-size: 9px;
-            font-weight: 700;
+            font-size: 10.5px;
+            font-weight: 600;
             color: var(--primary-green);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 2px 0 0 0;
-        }
-        .header-meta { text-align: right; font-size: 11px; color: var(--grey-dark); }
-        .header-meta strong { color: var(--navy-deep); }
-        .wa-status { color: var(--primary-green); font-weight: 700; margin-top: 3px; display: none; align-items: center; justify-content: flex-end; gap: 5px; }
-
-        /* 2. TÍTULO PRINCIPAL / DESTINATARIO */
-        .title-section { margin-bottom: 10px; }
-        .recipient-row { display: flex; flex-direction: column; gap: 5px; }
-        .title-section h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 30px;
-            color: var(--navy-deep);
+            letter-spacing: 0.5px;
             margin: 0;
-            line-height: 1;
+            white-space: nowrap;
         }
-        
-        .contact-info-row { display: flex; gap: 30px; margin-top: 5px; }
-        .contact-item {
+        .header-meta { text-align: right; font-size: 10px; color: var(--grey-dark); }
+        .wa-status { color: var(--primary-green); font-weight: 700; display: none; align-items: center; justify-content: flex-end; gap: 5px; margin-top: 3px; }
+
+        /* 2. DESTINATARIO COMPACTO */
+        .client-header-row {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--grey-muted);
-            border-bottom: 1px solid var(--grey-light);
-            min-width: 240px;
-            padding-bottom: 2px;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 3px solid var(--navy-deep);
         }
+        #client-name-top {
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 28px !important;
+            font-weight: 700 !important;
+            color: var(--navy-deep) !important;
+            margin: 0;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .contact-info-horizontal { display: flex; gap: 20px; align-items: center; }
+        .contact-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--grey-muted); min-width: 180px; }
         .contact-item i { color: var(--primary-green); font-size: 14px; }
 
-        /* Sección de Diagnóstico - Reducido margen para subir contenido */
-        .diagnosis-section {
-            margin-top: 15px; /* Reducido de 30px */
-            margin-bottom: 10px;
-            padding-top: 10px;
-            border-top: 3px solid var(--navy-deep);
-        }
-
-        /* 3. SECCIÓN DIAGNÓSTICO ESTRATÉGICO */
-        .strategic-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 15px; /* Reducido de 20px */
-        }
+        /* 3. GRID ESTRATÉGICO */
+        .diagnosis-section { margin-top: 10px; margin-bottom: 10px; }
+        .strategic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 12px; }
         .card {
             padding: 12px 18px;
             border-radius: 10px;
             background: var(--bg-cards);
             border: 1px solid var(--grey-light);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-            display: flex;
-            flex-direction: column;
             position: relative;
             z-index: 1;
-            height: auto;
             min-height: 100px;
         }
         .card::before {
@@ -164,186 +170,201 @@
             position: absolute;
             bottom: 5px;
             right: 15px;
-            font-size: 60px;
+            font-size: 65px; 
             font-weight: 800;
             color: var(--primary-green);
-            opacity: 0.1;
+            opacity: 0.25; 
             z-index: -1;
             font-family: 'Poppins', sans-serif;
         }
-        .card label {
-            font-family: 'Poppins', sans-serif;
-            font-size: 10px;
-            font-weight: 700;
+        .card label { 
+            font-size: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            margin-bottom: 6px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
             color: var(--navy-deep);
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
-        .card label i { color: var(--primary-green); }
-        .card .content { font-size: 11.5px; line-height: 1.4; color: var(--grey-dark); text-align: justify; }
+        .card label i { color: var(--primary-green); } 
+        .card .content { 
+            font-size: 12.5px; 
+            line-height: 1.4; 
+            color: var(--grey-dark); 
+            text-align: justify; 
+        }
 
-        /* 4. SOLUCIÓN / INVERSIÓN - Reducido margen para subir contenido */
-        .investment-section { margin-top: 15px; /* Reducido de 35px */ margin-bottom: 15px; }
+        /* 4. INVERSIÓN */
+        .investment-section { margin-top: 10px; margin-bottom: 10px; }
         .table-container { border-radius: 10px; overflow: hidden; border: 1px solid var(--grey-light); box-shadow: 0 3px 10px rgba(0,0,0,0.03); }
         table { width: 100%; border-collapse: collapse; }
-        th { background: var(--navy-deep); color: var(--white); padding: 12px; font-size: 9px; text-transform: uppercase; text-align: left; }
-        td { padding: 14px 12px; border-bottom: 1px solid var(--grey-light); }
-        .input-box { width: 100%; border: 1px solid var(--grey-light); padding: 8px; border-radius: 6px; font-weight: 700; font-size: 12px; color: var(--navy-deep); }
+        th { background: var(--navy-deep); color: var(--white); padding: 10px; font-size: 9px; text-transform: uppercase; text-align: left; }
+        td { padding: 8px 12px; border-bottom: 1px solid var(--grey-light); }
+        .input-box-table { border: 1px solid var(--grey-light); padding: 6px; border-radius: 6px; font-weight: 700; font-size: 11.5px; color: var(--navy-deep); width: 100%; }
         
         select {
-            width: 100%; padding: 8px; border: 1px solid var(--grey-light); border-radius: 6px;
-            font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: var(--navy-deep); background: var(--white);
-            outline: none; cursor: pointer; transition: all 0.2s;
+            width: 100%; padding: 6px; border: 1px solid var(--grey-light); border-radius: 6px;
+            font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 600; color: var(--navy-deep); background: var(--white);
+            outline: none; cursor: pointer;
         }
-        select:hover { border-color: var(--primary-green); }
 
-        /* 5. FUNCIONALIDADES - Reducido margen para subir contenido */
-        .features-section { margin-top: 5px; margin-bottom: 10px; }
-        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 5px 0; }
-        .feature-item {
+        /* 5. FUNCIONALIDADES CON MAPA MUNDI */
+        .features-section { 
+            margin-top: 5px; 
+            margin-bottom: 5px; 
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 12px; 
+            position: relative;
             background: var(--bg-accent);
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
+            border-radius: 15px;
             border: 1px solid #C6F6D5;
-            display: flex;
-            flex-direction: column;
-            min-height: 130px; 
+            overflow: hidden;
+            min-height: 155px; 
         }
-        .feature-item i { font-size: 22px; color: var(--primary-green); margin-bottom: 8px; display: block; }
-        .feature-item h4 { font-family: 'Poppins', sans-serif; font-size: 9.5px; margin: 0 0 5px 0; color: var(--navy-deep); text-transform: uppercase; line-height: 1.1; }
-        .feature-item p { font-size: 10.5px; line-height: 1.3; color: var(--grey-dark); margin: 0; text-align: center; }
+        
+        .world-map-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.15;
+            padding: 10px;
+        }
 
-        /* 6. CTA BANNER */
-        .cta-section {
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--navy-deep);
-            border-radius: 8px;
-            margin-top: auto; 
-            margin-bottom: 20px;
-            color: var(--white);
+        .feature-item {
+            padding: 15px 12px;
             text-align: center;
-        }
-        .cta-section p { font-size: 13px; font-weight: 600; margin: 0; }
-        .cta-section p strong { color: var(--primary-green); }
-
-        /* 7. FOOTER - Ajustes de visibilidad solicitados */
-        footer {
-            height: 80px;
-            border-top: 1px solid var(--grey-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 10px;
-        }
-        .author h4 { font-size: 14px; color: var(--navy-deep); margin: 0; }
-        /* Cargo más grande y visible */
-        .author p { 
-            font-size: 12.5px; /* Aumentado */
-            font-weight: 500;
-            color: var(--grey-dark); /* Más oscuro para visibilidad */
-            margin: 2px 0; 
-        }
-        /* Número de teléfono más grande */
-        .author .phone-line {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--navy-deep);
-        }
-        .author i { color: var(--primary-green); margin-right: 5px; }
-
-        .signature-box { text-align: center; width: 180px; }
-        .signature-line { border-top: 1.5px solid var(--navy-deep); margin-bottom: 4px; }
-        .signature-box span { font-size: 8px; text-transform: uppercase; font-weight: 700; color: var(--grey-muted); }
-        .signature-box strong { font-size: 12px; color: var(--navy-deep); display: block; }
-
-        /* Toolbar */
-        .toolbar {
-            position: fixed;
-            top: 20px;
-            right: 30px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
-            align-items: center;
+            z-index: 2;
+            border-right: 1px solid rgba(0, 217, 163, 0.15);
         }
-        .toolbar-btn {
-            padding: 10px 16px;
-            background: var(--navy-deep);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 11px;
+        .feature-item:last-child { border-right: none; }
+
+        .feature-item i { 
+            font-size: 24px; 
+            color: var(--primary-green); 
+            margin-bottom: 12px; 
+            display: block; 
+        }
+        .feature-item h4 { 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 13px; 
+            margin: 0 0 8px 0; 
+            color: var(--navy-deep); 
+            text-transform: uppercase; 
             font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .feature-item p { 
+            font-size: 12px; 
+            line-height: 1.4; 
+            color: var(--grey-dark); 
+            margin: 0; 
+            text-align: center; 
+        }
+
+        /* 6. BLOQUE DE RESPALDO E INCENTIVO */
+        .support-banner {
+            margin-top: 10px;
+            background: var(--navy-deep);
+            border-radius: 12px;
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--white);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+        .support-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 220px;
+        }
+        .support-items {
+            display: flex;
+            gap: 25px;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+        .support-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: 0.3s ease;
-        }
-        .toolbar-btn.wa { 
-            background: var(--whatsapp); 
-            display: none; 
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            justify-content: center;
-            padding: 0;
-            font-size: 24px;
-            box-shadow: 0 5px 15px rgba(37,211,102,0.4);
-            animation: fadeIn 0.4s ease forwards;
-        }
-        .toolbar-btn.mail { 
-            background: var(--email-blue); 
-            display: none; 
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            justify-content: center;
-            padding: 0;
-            font-size: 22px;
-            box-shadow: 0 5px 15px rgba(66,133,244,0.4);
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        #wa-help-toast {
-            position: fixed;
-            top: 80px;
-            right: 90px;
-            background: var(--navy-deep);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 8px;
             font-size: 11px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 999;
-            width: 220px;
-            display: none;
-            line-height: 1.4;
-            border-left: 4px solid var(--primary-green);
+            font-weight: 500;
+        }
+        .support-item i {
+            color: var(--primary-green);
+            font-size: 15px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8) translateY(-5px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+        .financing-info {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--navy-deep);
+            font-style: italic;
         }
+
+        /* 7. CTA BANNER */
+        .cta-section {
+            height: 40px; display: flex; align-items: center; justify-content: center; background: var(--navy-deep);
+            border-radius: 8px; margin-top: 10px; margin-bottom: 10px; color: var(--white);
+        }
+        
+        /* 8. FOOTER - ACTUALIZADO */
+        footer { height: 60px; border-top: 1px solid var(--grey-light); display: flex; justify-content: space-between; align-items: center; padding-top: 5px; margin-top: auto; }
+        .author-box { display: flex; align-items: center; gap: 15px; }
+        .author-box h4 { font-size: 13.5px; margin: 0; color: var(--navy-deep); font-weight: 700; }
+        .author-box .phone-line { 
+            font-size: 12.5px; 
+            font-weight: 700; 
+            color: var(--navy-deep); 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .author-box .role-text {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--grey-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .signature-box { text-align: center; width: 180px; }
+        .signature-line { border-top: 1.5px solid var(--navy-deep); margin-bottom: 4px; }
+        .signature-box span { 
+            font-size: 7.5px; 
+            text-transform: uppercase; 
+            font-weight: 700; 
+            color: var(--grey-muted); 
+            display: block;
+        }
+
+        /* Toolbar */
+        .toolbar { position: fixed; top: 20px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; align-items: center; }
+        .toolbar-btn { padding: 10px 16px; background: var(--navy-deep); color: white; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; transition: 0.3s ease; }
+        .toolbar-btn.wa { background: var(--whatsapp); display: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; padding: 0; font-size: 24px; }
+        .toolbar-btn.mail { background: var(--email-blue); display: none; width: 50px; height: 50px; border-radius: 50%; justify-content: center; padding: 0; font-size: 22px; }
+
+        #wa-help-toast { position: fixed; top: 80px; right: 90px; background: var(--navy-deep); color: white; padding: 10px 15px; border-radius: 8px; font-size: 11px; z-index: 999; width: 220px; display: none; border-left: 4px solid var(--primary-green); }
 
         @media print {
-            body { background: none; padding: 0; }
+            .toolbar, #wa-help-toast, .add-row-btn, .delete-row-btn { display: none !important; }
             .page { box-shadow: none; margin: 0; width: 100%; height: 100vh; }
-            .toolbar, #wa-help-toast { display: none !important; }
-            .cta-section { background: #0A2540 !important; -webkit-print-color-adjust: exact; }
-            th { background: #0A2540 !important; color: white !important; -webkit-print-color-adjust: exact; }
-            .feature-item { background: #E6F9F4 !important; border: 1px solid #C6F6D5 !important; -webkit-print-color-adjust: exact; }
+            .cta-section, th { background: #0A2540 !important; -webkit-print-color-adjust: exact; }
+            .support-banner { background: #0A2540 !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .features-grid { background: #E6F9F4 !important; border: 1px solid #C6F6D5 !important; -webkit-print-color-adjust: exact; }
             @page { size: letter; margin: 0; }
         }
     </style>
@@ -351,30 +372,19 @@
 <body>
 
     <div class="toolbar">
-        <button class="toolbar-btn" onclick="window.print()">
-            <i class="fa-solid fa-file-pdf"></i> GENERAR PDF
-        </button>
-        <!-- Botón de WhatsApp -->
-        <button id="whatsapp-btn" class="toolbar-btn wa" title="Enviar Propuesta por WhatsApp" onclick="sendViaWhatsApp()">
-            <i class="fa-brands fa-whatsapp"></i>
-        </button>
-        <!-- Botón de Email -->
-        <button id="email-btn" class="toolbar-btn mail" title="Enviar por Email" onclick="sendViaEmail()">
-            <i class="fa-solid fa-envelope"></i>
-        </button>
+        <button class="toolbar-btn" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> GENERAR PDF</button>
+        <button id="whatsapp-btn" class="toolbar-btn wa" title="WhatsApp" onclick="sendViaWhatsApp()"><i class="fa-brands fa-whatsapp"></i></button>
+        <button id="email-btn" class="toolbar-btn mail" title="Email" onclick="sendViaEmail()"><i class="fa-solid fa-envelope"></i></button>
     </div>
 
-    <div id="wa-help-toast">
-        ✨ <strong>¡Preparando envío!</strong><br>
-        Se generará el PDF. Luego adjúntalo en el chat de WhatsApp que se abrirá automáticamente.
-    </div>
+    <div id="wa-help-toast">✨ <strong>¡Preparando envío!</strong><br>Se generará el PDF. Luego adjúntalo al mensaje automático.</div>
 
     <div class="page">
         <!-- 1. HEADER -->
         <header>
             <div class="logo-box">
                 <h1>PROPPIT<span>.</span></h1>
-                <p>La Plataforma de Marketing Inmobiliario Inteligente</p>
+                <p>La plataforma de marketing Inmobiliario</p>
             </div>
             <div class="header-meta">
                 <span id="current-date">...</span><br>
@@ -385,33 +395,25 @@
             </div>
         </header>
 
-        <!-- 2. TÍTULO UNIFICADO / DESTINATARIO -->
+        <!-- 2. DESTINATARIO COMPACTO -->
         <section class="title-section">
             <div class="section-title-uniform">Propuesta preparada para</div>
-            <div class="recipient-row">
+            <div class="client-header-row">
                 <h2 contenteditable="true" id="client-name-top">Carla Saldarriaga</h2>
-                <div class="contact-info-row">
-                    <div class="contact-item">
-                        <i class="fa-solid fa-envelope"></i>
-                        <div contenteditable="true" id="client-email-field">Correo electrónico...</div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fa-solid fa-mobile-alt"></i>
-                        <div contenteditable="true" id="client-phone-field">Número de contacto...</div>
-                    </div>
+                <div class="contact-info-horizontal">
+                    <div class="contact-item"><i class="fa-solid fa-envelope"></i><div contenteditable="true" id="client-email-field">Correo electrónico...</div></div>
+                    <div class="contact-item"><i class="fa-solid fa-mobile-alt"></i><div contenteditable="true" id="client-phone-field">Número de contacto...</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- DIAGNÓSTICO DE OPERACIÓN -->
+        <!-- DIAGNÓSTICO -->
         <section class="diagnosis-section">
             <div style="display: grid; grid-template-columns: auto 1fr; gap: 15px; align-items: center;">
-                <div class="section-title-uniform" style="margin-bottom: 0; flex: none;">
-                    Diagnóstico de Tu Operación Comercial
-                </div>
-                <div style="max-width: 350px;">
-                    <select id="diagnosis-scenario" onchange="autoFillScenarios()" style="border-color: var(--primary-green); font-size: 13px; padding: 10px;">
-                        <option value="default">📘 Escenario actual e impacto con Proppit</option>
+                <div class="section-title-uniform" style="margin-bottom: 0; flex: none;">Diagnóstico de Tu Operación Comercial</div>
+                <div style="max-width: 420px;">
+                    <select id="diagnosis-scenario" onchange="autoFillScenarios()" style="border-color: var(--primary-green); font-size: 14px; padding: 8px; font-weight: 600; width: 100%;">
+                        <option value="default">📘 Escenario Actual e Impacto con Proppit</option>
                         <option value="fuga">⚡ Cierre de Ventas en Tiempo Real</option>
                         <option value="frios">🎯 Foco en Compradores Calificados</option>
                         <option value="visibilidad">🌐 Expansión Omnicanal en el Mercado</option>
@@ -422,108 +424,157 @@
             </div>
         </section>
 
-        <!-- 3. DIAGNÓSTICO ESTRATÉGICO -->
+        <!-- 3. GRID ESTRATÉGICO -->
         <div class="strategic-grid">
             <div class="card" data-order="1">
-                <label><i class="fa-solid fa-magnifying-glass-chart"></i> Diagnóstico</label>
+                <label><i class="fa-solid fa-magnifying-glass-chart"></i> <strong>Diagnóstico</strong></label>
                 <div class="content" id="card-diag" contenteditable="true">Resume la situación actual del cliente y el problema identificado. Demuestra que escuchaste sus necesidades para generar confianza inmediata.</div>
             </div>
             <div class="card" data-order="2">
-                <label><i class="fa-solid fa-bullseye"></i> Objetivo Estratégico</label>
+                <label><i class="fa-solid fa-bullseye"></i> <strong>Objetivo</strong></label>
                 <div class="content" id="card-obj" contenteditable="true">Define claramente qué se quiere lograr (ej. "Aumentar captación de leads calificados en un 20%"). Debe ser una meta específica y medible.</div>
             </div>
             <div class="card" data-order="3">
-                <label><i class="fa-solid fa-wand-magic-sparkles"></i> Solución</label>
+                <label><i class="fa-solid fa-wand-magic-sparkles"></i> <strong>Solución</strong></label>
                 <div class="content" id="card-sol" contenteditable="true">Detalla los servicios específicos que resuelven el problema. Enfócate en la solución técnica que ofrece Proppit para optimizar tu gestión comercial.</div>
             </div>
             <div class="card" data-order="4">
-                <label><i class="fa-solid fa-award"></i> Propuesta de Valor</label>
+                <label><i class="fa-solid fa-award"></i> <strong>Valor</strong></label>
                 <div class="content" id="card-val" contenteditable="true">Explica por qué nuestra tecnología es superior. Destaca el filtrado de calidad frente a la visibilidad masiva y genérica de la competencia tradicional.</div>
             </div>
         </div>
 
-        <!-- 4. INVERSIÓN (SUBIDO) -->
+        <!-- 4. INVERSIÓN -->
         <section class="investment-section">
-            <div class="section-title-uniform">Configuración del Plan de Inversión</div>
+            <div class="section-title-uniform">
+                Configuración del Plan de Inversión
+                <button class="add-row-btn" onclick="addProposalRow()" title="Añadir opción de propuesta">+</button>
+            </div>
             <div class="table-container">
-                <table>
+                <table id="investment-table">
                     <thead>
                         <tr>
                             <th style="width: 25%;">Servicio</th>
                             <th style="width: 30%;">Producto</th>
                             <th style="width: 20%;">Periodo</th>
-                            <th style="width: 25%;">Inversión</th>
+                            <th style="width: 20%;">Inversión</th>
+                            <th style="width: 5%;" class="no-print"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="investment-body">
                         <tr>
-                            <td><div class="input-box" contenteditable="true">Plan Premium Proppit</div></td>
                             <td>
-                                <select id="product-select">
-                                    <option value="10">10 Destacados</option>
-                                    <option value="25">25 Destacados</option>
-                                    <option value="50" selected>50 Destacados</option>
-                                    <option value="100">100 Destacados</option>
-                                    <option value="200">200 Destacados</option>
-                                    <option value="500">500 Destacados</option>
-                                    <option value="1,000">1,000 Destacados</option>
-                                    <option value="5,000">5,000 Destacados</option>
+                                <select class="service-selector">
+                                    <option value="Plan Premium">Plan Premium</option>
+                                    <option value="Plan Profesional">Plan Profesional</option>
                                 </select>
                             </td>
                             <td>
-                                <select id="period-select">
+                                <select class="product-selector">
+                                    <option value="10">10 Destacados</option>
+                                    <option value="15">15 Destacados</option>
+                                    <option value="25">25 Destacados</option>
+                                    <option value="35">35 Destacados</option>
+                                    <option value="50" selected>50 Destacados</option>
+                                    <option value="75">75 Destacados</option>
+                                    <option value="100">100 Destacados</option>
+                                    <option value="150">150 Destacados</option>
+                                    <option value="200">200 Destacados</option>
+                                    <option value="300">300 Destacados</option>
+                                    <option value="400">400 Destacados</option>
+                                    <option value="500">500 Destacados</option>
+                                    <option value="600">600 Destacados</option>
+                                    <option value="800">800 Destacados</option>
+                                    <option value="1000">1,000 Destacados</option>
+                                    <option value="2000">2,000 Destacados</option>
+                                    <option value="3000">3,000 Destacados</option>
+                                    <option value="4000">4,000 Destacados</option>
+                                    <option value="5000">5,000 Destacados</option>
+                                    <option value="10000">10,000 Destacados</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="period-selector">
                                     <option value="1 mes">1 mes</option>
                                     <option value="3 meses">3 meses</option>
                                     <option value="6 meses">6 meses</option>
                                     <option value="12 meses">12 meses</option>
                                 </select>
                             </td>
-                            <td><div class="input-box" contenteditable="true">$ 460.000 COP</div></td>
+                            <td><div class="input-box-table" contenteditable="true">$ 460.000 COP</div></td>
+                            <td class="no-print"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- 5. FUNCIONALIDADES (SUBIDO) -->
+        <!-- 5. FUNCIONALIDADES CON MAPA MUNDI Y TEXTOS RESALTADOS -->
         <section class="features-section">
             <div class="section-title-uniform">Funcionalidades Clave de la Plataforma</div>
             <div class="features-grid">
+                <div class="world-map-overlay">
+                    <svg viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="dotPattern" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+                                <circle cx="4" cy="4" r="1.6" fill="var(--navy-deep)" />
+                            </pattern>
+                        </defs>
+                        <path d="M50,50 C100,50 150,80 200,150 C250,220 200,380 150,380 C100,380 50,220 50,50" fill="url(#dotPattern)" />
+                        <path d="M420,40 C480,40 550,40 600,100 C650,160 620,350 550,350 C480,350 400,200 420,40" fill="url(#dotPattern)" />
+                        <path d="M680,50 C750,50 950,50 980,150 C1000,250 900,380 800,380 C700,380 650,250 680,50" fill="url(#dotPattern)" />
+                    </svg>
+                </div>
+                
                 <div class="feature-item">
                     <i class="fa-solid fa-share-nodes"></i>
                     <h4>Multi-publicación</h4>
-                    <p>6 portales, un solo click; Properati, Punto Propiedad, Nestoria, Nuroa, Mitula y Trovit. Anclado con tus redes sociales.</p>
+                    <p><strong>6 portales con un solo click; .</strong> Properati, Punto Propiedad, Nestoria, Nuroa, Mitula y Trovit.</p>
                 </div>
+
                 <div class="feature-item">
                     <i class="fa-solid fa-user-check"></i>
                     <h4>Filtrado Leads</h4>
-                    <p>Leads precalificados con presupuesto real, intención de compra verificada y match automático con tu inventario disponible.</p>
+                    <p><strong>Leads precalificados con presupuesto real .</strong> intención verificada y match automático con inventario.</p>
                 </div>
+
                 <div class="feature-item">
                     <i class="fa-solid fa-mobile-screen-button"></i>
                     <h4>Gestión Mobile</h4>
-                    <p>MiniCRM integrado con respuesta inmediata vía WhatsApp para seguimiento efectivo en tiempo real.</p>
+                    <p><strong>MiniCRM integrado</strong> con respuesta inmediata vía <strong>WhatsApp</strong> para seguimiento efectivo en tiempo real.</p>
                 </div>
+
                 <div class="feature-item">
                     <i class="fa-solid fa-chart-pie"></i>
                     <h4>Análisis Data</h4>
-                    <p>Información en tiempo real sobre el desempeño detallado de cada propiedad publicada en los diferentes portales.</p>
+                    <p>Información en tiempo real sobre el <strong>desempeño detallado</strong> de cada propiedad en los portales.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 6. CTA BANNER -->
+        <!-- 6. BLOQUE DE RESPALDO -->
+        <div class="support-banner">
+            <div class="support-title">Este es el respaldo con el que contarás:</div>
+            <div class="support-items">
+                <div class="support-item"><i class="fa-solid fa-headset"></i> Soporte, tecnología y seguridad</div>
+                <div class="support-item"><i class="fa-solid fa-globe"></i> Experiencia y trayectoria nacional e internacional</div>
+            </div>
+        </div>
+        <p class="financing-info">(Paga tu plan con tu tarjeta de crédito que nosotros asumimos los intereses)</p>
+
+        <!-- 7. CTA BANNER -->
         <div class="cta-section">
             <p>Conectamos tus inmuebles con <strong>clientes de alto potencial de compra</strong></p>
         </div>
 
-        <!-- 7. FOOTER ACTUALIZADO -->
+        <!-- 8. FOOTER ACTUALIZADO -->
         <footer>
-            <div class="author">
+            <div class="author-box">
                 <h4 contenteditable="true">Dayro Leal</h4>
-                <p contenteditable="true">Hunter Agencies | Partner Estratégico Proppit</p>
                 <div class="phone-line">
-                    <i class="fa-solid fa-phone"></i> <span contenteditable="true" id="sender-phone">+57 300 665 1332</span>
+                    <i class="fa-solid fa-phone"></i> 
+                    <span contenteditable="true" id="sender-phone">+57 300 665 1332</span>
+                    <span class="role-text" contenteditable="true">Hunter Agencies - Gerencia Comercial</span>
                 </div>
             </div>
             <div class="signature-box">
@@ -536,42 +587,12 @@
 
     <script>
         const scenarios = {
-            fuga: {
-                diag: "Solo 40% de leads contactados en 24h. Perdidas anuales y pocos cierres por demora de respuesta.",
-                obj: "Aumentar contacto efectivo de 30% a 85% en primeros 5 minutos. Disponibilidad 24/7 capturando 95% leads entrantes.",
-                sol: "Lucía IA responde instantáneamente WhatsApp, califica leads automáticamente, atiende citas 24/7 sin descanso.",
-                val: "Recuperas 55% ventas perdidas. Nunca pierdes leads por demora. La inmobiliaria solo atiende calificados listos para cerrar."
-            },
-            frios: {
-                diag: "Más del 70% del tiempo con leads sin presupuesto real. Solo 5-8% convierten. Se persiguen clientes fantasmas.",
-                obj: "Aumentar conversión de 5% a 25-30%. Reducir tiempo desperdiciado 50%. Triplicar productividad del equipo comercial.",
-                sol: "Matching Leads + Lead Plus verifican presupuesto e intención real automáticamente antes de enviarte el contacto calificado.",
-                val: "Conversión 5 veces más. La inmobiliaria triplica comisiones con mitad del esfuerzo. El retorno a la inversión se hace visible mas rápido."
-            },
-            visibilidad: {
-                diag: "Propiedades en 1-2 portales con info desactualizada. Alcanzas solo 20% mercado potencial. Pierdes 60% oportunidades por invisibilidad.",
-                obj: "Multiplicar visibilidad 6 veces más en portales + redes sociales. Alcanzar 80% mercado. Aumentar leads con Superdestacados.",
-                sol: "Difusión Multi-Portal sincroniza inventario en 6 portales + redes sociales simultáneamente. Una actualización replica en todos instantáneamente.",
-                val: "Tiempo de publicación de 10 horas a 5 minutos por semana. Dominas mercado digital nacional y global."
-            },
-            desorganizacion: {
-                diag: "Leads gestionados en WhatsApp personal, Excel y agenda. El 40% se pierden por falta de eficiencia operativa. Sin CRM.",
-                obj: "Centralizar 100% gestión en plataforma unificada con visibilidad en tiempo real. Reducir leads perdidos de 40% a menos del 10%.",
-                sol: "CRM Inmobiliario centraliza todos los leads, impresiones, visitas, solicitudes y propiedades.",
-                val: "Control total en tiempo real desde celular. Reduces perdida de clientes. Aumentas cierre. Decisiones basadas en data."
-            },
-            competencia: {
-                diag: "Competidores usan IA y automatización. Cierran más rápido con menos recursos. Perdida de oportunidades ante inmobiliarias con IA integrada.",
-                obj: "Modernizar y aumentar visualizaciones. Respuesta < 5min, automatización completa, experiencia omnicanal líder regional.",
-                sol: "Plataforma Proppit Completa: Lucía IA + Matching + Multi-Portal + MiniCRM + Analítica.",
-                val: "Saltas 5 años de evolución digital en 30 días. Diferenciación competitiva real. Atraes mejores colegas, propiedades y clientes."
-            },
-            default: {
-                diag: "Resume la situación actual del cliente y el problema identificado. Demuestra que escuchaste sus necesidades para generar confianza inmediata.",
-                obj: "Define claramente qué se quiere lograr (ej. \"Aumentar captación de leads calificados en un 20%\"). Debe ser una meta específica y medible.",
-                sol: "Detalla los servicios específicos que resuelven el problema. Enfócate en la solución técnica que ofrece Proppit para optimizar tu gestión comercial.",
-                val: "Explica por qué nuestra tecnología es superior. Destaca el filtrado de calidad frente a la visibilidad masiva y genérica de la competencia tradicional."
-            }
+            fuga: { diag: "Solo 40% de leads contactados en 24h. Perdidas anuales y pocos cierres por demora de respuesta.", obj: "Aumentar contacto efectivo de 30% a 85% en primeros 5 minutos. Disponibilidad 24/7 capturando 95% leads.", sol: "Lucía IA responde instantáneamente WhatsApp, califica leads automáticamente, atiende citas 24/7.", val: "Recuperas 55% ventas perdidas. Nunca pierdes leads por demora. Solo atiendes calificados." },
+            frios: { diag: "Más del 70% del tiempo con leads sin presupuesto real. Solo 5-8% convierten. Se persiguen fantasmas.", obj: "Aumentar conversión de 5% a 25-30%. Reducir tiempo desperdiciado 50%. Triplicar productividad.", sol: "Matching Leads + Lead Plus verifican presupuesto e intención real automáticamente antes de enviarte.", val: "Conversión 5 veces más. La inmobiliaria triplica comisiones con mitad del esfuerzo. ROI más rápido." },
+            visibilidad: { diag: "Propiedades en 1-2 portales con info desactualizada. Alcanzas solo 20% mercado potencial.", obj: "Multiplicar visibilidad 6 veces más en portales + redes sociales. Alcanzar 80% mercado total.", sol: "Difusión Multi-Portal sincroniza inventario en 6 portales + redes sociales simultáneamente.", val: "Tiempo de publicación de 10 horas a 5 minutos por semana. Dominas mercado digital nacional." },
+            desorganizacion: { diag: "Leads gestionados en WhatsApp personal y Excel. El 40% se pierden por falta de eficiencia.", obj: "Centralizar 100% gestión en plataforma unificada con visibilidad real. Reducir pérdida a <10%.", sol: "CRM Inmobiliario centraliza todos los leads, impresiones, visitas, solicitudes y propiedades.", val: "Control total en tiempo real desde celular. Reduces perdida de clientes. Decisiones basadas en data." },
+            competencia: { diag: "Competidores usan IA y automatización. Cierran más rápido con menos recursos. Pérdida de oportunidades.", obj: "Modernizar y aumentar visualizaciones. Respuesta < 5min, automatización completa líder regional.", sol: "Plataforma Proppit Completa: Lucía IA + Matching + Multi-Portal + MiniCRM + Analítica.", val: "Saltas 5 años de evolución digital en 30 días. Diferenciación competitiva real. Atraes mejores colegas." },
+            default: { diag: "Resume la situación actual del cliente y el problema identificado. Demuestra que escuchaste sus necesidades para generar confianza inmediata.", obj: "Define claramente qué se quiere lograr (ej. \"Aumentar captación de leads calificados en un 20%\"). Debe ser una meta específica y medible.", sol: "Detalla los servicios específicos que resuelven el problema. Enfócate en la solución técnica que ofrece Proppit para optimizar tu gestión comercial.", val: "Explica por qué nuestra tecnología es superior. Destaca el filtrado de calidad frente a la visibilidad masiva y genérica de la competencia tradicional." }
         };
 
         function autoFillScenarios() {
@@ -580,78 +601,105 @@
             const cards = ['diag', 'obj', 'sol', 'val'];
             cards.forEach(key => {
                 const el = document.getElementById(`card-${key}`);
-                el.innerText = data[key];
-                el.contentEditable = (selection === 'default');
+                if (el) {
+                    el.innerText = data[key];
+                    el.contentEditable = (selection === 'default');
+                }
             });
+        }
+
+        function addProposalRow() {
+            const body = document.getElementById('investment-body');
+            if (body.children.length >= 3) return;
+            const newRow = body.children[0].cloneNode(true);
+            newRow.querySelector('.no-print').innerHTML = '<i class="fa-solid fa-trash-can delete-row-btn" onclick="this.parentElement.parentElement.remove()"></i>';
+            body.appendChild(newRow);
         }
 
         function updateDate() {
             const options = { day: 'numeric', month: 'long', year: 'numeric' };
             const today = new Date();
-            const dateStr = today.toLocaleDateString('es-ES', options);
-            document.getElementById('current-date').innerText = dateStr;
+            const dateEl = document.getElementById('current-date');
+            if (dateEl) dateEl.innerText = today.toLocaleDateString('es-ES', options);
         }
 
         window.onbeforeprint = updateDate;
         window.onload = () => {
             updateDate();
-            document.getElementById('wa-indicator').style.display = 'none';
+            const waInd = document.getElementById('wa-indicator');
+            if (waInd) waInd.style.display = 'none';
+
+            const topName = document.getElementById('client-name-top');
+            const bottomName = document.getElementById('client-name-bottom');
+            if (topName && bottomName) {
+                topName.addEventListener('input', function() { bottomName.innerText = this.innerText; });
+            }
+
+            const phoneField = document.getElementById('client-phone-field');
+            const emailField = document.getElementById('client-email-field');
+            const waBtn = document.getElementById('whatsapp-btn');
+            const mailBtn = document.getElementById('email-btn');
+
+            if (phoneField) {
+                phoneField.addEventListener('input', function() {
+                    let val = this.innerText.replace(/\D/g, '');
+                    if (waBtn) waBtn.style.display = val.length >= 10 ? 'flex' : 'none';
+                    if (waInd) waInd.style.display = val.length >= 10 ? 'flex' : 'none';
+                });
+            }
+
+            if (emailField) {
+                emailField.addEventListener('input', function() {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (mailBtn) mailBtn.style.display = emailRegex.test(this.innerText) ? 'flex' : 'none';
+                });
+            }
+
+            [phoneField, emailField].forEach(field => {
+                if (!field) return;
+                const placeholder = field.id === 'client-phone-field' ? 'Número de contacto...' : 'Correo electrónico...';
+                field.addEventListener('focus', function() { if (this.innerText === placeholder) this.innerText = ''; });
+                field.addEventListener('blur', function() { if (this.innerText === '') this.innerText = placeholder; });
+            });
         };
 
-        const topName = document.getElementById('client-name-top');
-        const bottomName = document.getElementById('client-name-bottom');
-        topName.addEventListener('input', function() { bottomName.innerText = this.innerText; });
-
-        const phoneField = document.getElementById('client-phone-field');
-        const emailField = document.getElementById('client-email-field');
-        const waBtn = document.getElementById('whatsapp-btn');
-        const mailBtn = document.getElementById('email-btn');
-        const waInd = document.getElementById('wa-indicator');
-        const waHelp = document.getElementById('wa-help-toast');
-
-        phoneField.addEventListener('input', function() {
-            let val = this.innerText.replace(/\D/g, '');
-            waBtn.style.display = val.length >= 10 ? 'flex' : 'none';
-            waInd.style.display = val.length >= 10 ? 'flex' : 'none';
-        });
-
-        emailField.addEventListener('input', function() {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            mailBtn.style.display = emailRegex.test(this.innerText) ? 'flex' : 'none';
-        });
-
-        [phoneField, emailField].forEach(field => {
-            const placeholder = field.id === 'client-phone-field' ? 'Número de contacto...' : 'Correo electrónico...';
-            field.addEventListener('focus', function() { if (this.innerText === placeholder) this.innerText = ''; });
-            field.addEventListener('blur', function() { if (this.innerText === '') this.innerText = placeholder; });
-        });
-
         function sendViaWhatsApp() {
+            const phoneField = document.getElementById('client-phone-field');
+            const bottomName = document.getElementById('client-name-bottom');
+            const waHelp = document.getElementById('wa-help-toast');
+            
+            if (!phoneField || !bottomName) return;
+            
             const clientNum = phoneField.innerText.replace(/\D/g, '');
             const clientName = bottomName.innerText;
-            
             if (clientNum) {
-                waHelp.style.display = 'block';
+                if (waHelp) waHelp.style.display = 'block';
                 window.print();
                 const msg = encodeURIComponent(`Hola ${clientName}, es un gusto saludarte. Según lo conversado, te envío la propuesta personalizada de Proppit adjunta en formato PDF para tu revisión. Quedo atento a tus dudas.`);
                 setTimeout(() => {
                     window.open(`https://wa.me/${clientNum}?text=${msg}`, '_blank', 'noopener,noreferrer');
-                    waHelp.style.display = 'none';
+                    if (waHelp) waHelp.style.display = 'none';
                 }, 1500);
             }
         }
 
         function sendViaEmail() {
+            const emailField = document.getElementById('client-email-field');
+            const bottomName = document.getElementById('client-name-bottom');
+            const waHelp = document.getElementById('wa-help-toast');
+            
+            if (!emailField || !bottomName) return;
+
             const email = emailField.innerText;
             const client = bottomName.innerText;
             if (email && email !== 'Correo electrónico...') {
-                waHelp.style.display = 'block';
+                if (waHelp) waHelp.style.display = 'block';
                 window.print();
                 const subject = encodeURIComponent(`Propuesta Estratégica Proppit - ${client}`);
                 const body = encodeURIComponent(`Hola ${client},\n\nUn gusto saludarte. Adjunto envío la propuesta comercial de Proppit personalizada para tu operación, con el objetivo de optimizar tu gestión comercial y aumentar la conversión de tus leads.\n\nQuedo atento a tus comentarios para dar el siguiente paso.\n\nSaludos.`);
                 setTimeout(() => {
                     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-                    waHelp.style.display = 'none';
+                    if (waHelp) waHelp.style.display = 'none';
                 }, 1200);
             }
         }
